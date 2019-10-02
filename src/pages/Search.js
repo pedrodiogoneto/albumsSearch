@@ -36,6 +36,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(Search)
 
 const SearchWrapper = styled.div`
     text-align: center;
+	margin-bottom: 10%
 `
 
 const SearchButton = styled.button`
