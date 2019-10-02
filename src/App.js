@@ -27,6 +27,7 @@ const App = () => (
 export default App;
 
 const Wrapper = styled.div`
-	background-image: linear-gradient(white, #e6e6e6);
+	background-image: linear-gradient(#ececec94, #2c3e5091);
 	padding: 10%
 `
+
