@@ -3,11 +3,13 @@ import Search from './pages/Search';
 import styled from 'styled-components'
 import { Provider } from 'react-redux'
 import { createStore, applyMiddleware } from 'redux'
-//import configureStore from './redux/store';
 
 import rootReducer from './redux/reducers/rootReducer';
 import createSagaMiddleware from 'redux-saga';
 import albunsSaga from "./redux/sagas/sagas";
+
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 const sagaMiddleware = createSagaMiddleware();
 
