@@ -3,19 +3,22 @@ import SearchComponent from '../components/SearchComponent';
 import AlbunsGrid from '../components/AlbunsGrid'
 import styled from 'styled-components'
 import { useSelector } from 'react-redux'
+import { Spinner } from 'react-bootstrap'
 
 import { connect } from 'react-redux';
 import { NEW_SEARCH } from '../redux/actions/actions'
 
 const Search = (props) => {
 	const [areResultsShowing, setAreResultsShowing] = useState(false)
+	const [isGridPattern, setIsGridPattern] = useState(true)
+
+	const data = useSelector(state => state.data.results)
 
 	const handleOnSearchClick = () => {
 		setAreResultsShowing(true)
 		return props.NEW_SEARCH()
 	}
 
-	const data = useSelector(state => state.data.results)
 	const PositionedSearchWrapper = areResultsShowing ? TopSearchWrapper : CenteredSearchWrapper
 
 	return (
@@ -26,8 +29,17 @@ const Search = (props) => {
 					<SearchComponent areResultsShowing={areResultsShowing} />
 					<SearchButton onClick={() => handleOnSearchClick()}>Search</SearchButton>
 				</div>
+				{data && <button onClick={() => setIsGridPattern(!isGridPattern)}>Change Dir</button>}
 			</PositionedSearchWrapper>
-			{data && <AlbunsGrid data={data}/>}
+			
+			{props.loading &&
+				<SpinnerWrapper>
+					<Spinner animation="border" role="status">
+						<span className="sr-only">Loading...</span>
+					</Spinner>
+				</SpinnerWrapper>}
+			
+			{!props.loading && data && <AlbunsGrid data={data} isGridPattern={isGridPattern}/>}
 		</React.Fragment>
 	);
 }
@@ -65,4 +77,9 @@ const Title = styled.p`
 	font-size: ${props => props.areResultsShowing ? '14pt' : '25pt'};
 	font-weight: 600;
 	margin: ${props => props.areResultsShowing ? '0px' : '5%'};
+`
+
+const SpinnerWrapper = styled.div`
+	text-align: center;
+	margin-top: 10%
 `
