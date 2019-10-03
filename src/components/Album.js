@@ -1,13 +1,13 @@
 import React from 'react';
 import styled from 'styled-components'
 
-const Album = ({ album }) => {
+const Album = ({ album, isGridPattern }) => {
 	return (
-		<Wrapper>
-			<AlbumImage src={album.artworkUrl100}/>
+		<Wrapper isGridPattern={isGridPattern}>
+			<AlbumImage src={album.artworkUrl100} isGridPattern={isGridPattern}/>
 			<TextWrapper>
-				<AlbumArtist>{album.artistName}</AlbumArtist>
-				<AlbumName>{album.collectionName}</AlbumName>
+				<AlbumArtist isGridPattern={isGridPattern}>{album.artistName}</AlbumArtist>
+				<AlbumName isGridPattern={isGridPattern}>{album.collectionName}</AlbumName>
 			</TextWrapper>
 		</Wrapper>
 	);
@@ -16,18 +16,21 @@ const Album = ({ album }) => {
 export default Album;
 
 const Wrapper = styled.div`
-    border-radius: 5%;
+    border-radius: ${props => props.isGridPattern ? '5%' : '1%'};
     background-color: white;
-    width: 20%
+    width: ${props => props.isGridPattern ? '20%' : '50%'};
     margin-right: 1%;
     margin-bottom: 5%;
     box-shadow: 2px 9px 19px -9px rgba(0,0,0,0.75);
+    display: ${props => props.isGridPattern ? '' : 'flex'};
 `
 
 const AlbumImage = styled.img`
-    width: 100%;
-    border-top-left-radius: 5%;
-    border-top-right-radius: 5%;
+    width: ${props => props.isGridPattern ? '100%' : ''};
+    min-width: ${props => props.isGridPattern ? '' : '40%'};
+    border-top-left-radius: ${props => props.isGridPattern ? '5%' : '1%'};
+    border-top-right-radius: ${props => props.isGridPattern ? '5%' : '0%'};
+    border-bottom-left-radius: ${props => props.isGridPattern ? '0%' : '1%'};
 `
 
 const TextWrapper = styled.div`
@@ -36,7 +39,7 @@ const TextWrapper = styled.div`
 
 const AlbumArtist = styled.p`
     color: grey;
-    font-size: 8pt;
+    font-size: ${props => props.isGridPattern ? '8pt' : '10pt'};
     text-overflow: ellipsis;
     margin: 0px
 `
@@ -44,5 +47,5 @@ const AlbumArtist = styled.p`
 const AlbumName = styled.p`
     text-overflow: ellipsis;
     margin: 3% 0px 3%;
-    font-size: 10pt;
+    font-size: ${props => props.isGridPattern ? '10pt' : '12pt'};
 `
