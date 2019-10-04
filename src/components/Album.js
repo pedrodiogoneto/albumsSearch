@@ -23,6 +23,7 @@ const Wrapper = styled.div`
     margin-bottom: 5%;
     box-shadow: 2px 9px 19px -9px rgba(0,0,0,0.75);
     display: ${props => props.isGridPattern ? '' : 'flex'};
+    min-width: ${props => props.isGridPattern ? '125px' : '300px'};
 `
 
 const AlbumImage = styled.img`

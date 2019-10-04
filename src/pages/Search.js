@@ -6,6 +6,8 @@ import styled from 'styled-components'
 import { useSelector } from 'react-redux'
 import { Spinner } from 'react-bootstrap'
 
+import switchIcon from '../switch.png'
+
 import { connect } from 'react-redux';
 import { NEW_SEARCH } from '../redux/actions/actions'
 
@@ -32,7 +34,7 @@ const Search = (props) => {
 					<SearchComponent areResultsShowing={areResultsShowing} />
 					<SearchButton onClick={() => handleOnSearchClick()}>Search</SearchButton>
 				</div>
-				{data && <button onClick={() => setIsGridPattern(!isGridPattern)}>Change Dir</button>}
+				{data && <button onClick={() => setIsGridPattern(!isGridPattern)}><ImageSwitch src={switchIcon} alt={'switch'}/></button>}
 			</PositionedSearchWrapper>
 			
 			{loading &&
@@ -90,4 +92,9 @@ const Title = styled.p`
 const SpinnerWrapper = styled.div`
 	text-align: center;
 	margin-top: 10%
+`
+
+const ImageSwitch = styled.img`
+	width: 25%;
+    margin-top: -5%;
 `

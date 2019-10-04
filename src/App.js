@@ -30,6 +30,8 @@ export default App;
 
 const Wrapper = styled.div`
 	background-image: linear-gradient(#ececec94, #2c3e5091);
-	padding: 10%
+	padding: 10%;
+	height: 100%;
+	min-height: 100vh;
 `
 
