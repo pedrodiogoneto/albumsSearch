@@ -39,3 +39,12 @@ export const LOAD_ALBUNS_SUCCESS = () => {
 	}
 }
 
+export const NEW_SELECTED_PAGE = (selectedPage) => {
+	return {
+		type: 'NEW_SELECTED_PAGE',
+		payload: {
+			selectedPage
+		}
+	}
+}
+

@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import SearchComponent from '../components/SearchComponent';
 import AlbunsGrid from '../components/AlbunsGrid'
+import Pagination from '../components/Pagination'
 import styled from 'styled-components'
 import { useSelector } from 'react-redux'
 import { Spinner } from 'react-bootstrap'
@@ -11,8 +12,10 @@ import { NEW_SEARCH } from '../redux/actions/actions'
 const Search = (props) => {
 	const [areResultsShowing, setAreResultsShowing] = useState(false)
 	const [isGridPattern, setIsGridPattern] = useState(true)
+	const [page, setPage] = useState(1)
 	const data = useSelector(state => state.data.results)
 
+	useEffect(() => setPage(props.selectedPage), [props.selectedPage]);
 
 	const handleOnSearchClick = () => {
 		setAreResultsShowing(true)
@@ -21,7 +24,6 @@ const Search = (props) => {
 
 	const PositionedSearchWrapper = areResultsShowing ? TopSearchWrapper : CenteredSearchWrapper
 	const { loading } = props
-	
 	return (
 		<React.Fragment>
 			<PositionedSearchWrapper>
@@ -40,7 +42,9 @@ const Search = (props) => {
 					</Spinner>
 				</SpinnerWrapper>}
 			
-			{!loading && data && <AlbunsGrid data={data} isGridPattern={isGridPattern}/>}
+			{!loading && data && <AlbunsGrid data={data[page]} isGridPattern={isGridPattern}/>}
+
+			{!loading && data && <Pagination data={data} />}
 
 			{!loading && data === null && <p>I'm Sorry, we couldn't find what you're looking for</p>}
 		</React.Fragment>
@@ -54,7 +58,8 @@ const mapDispatchToProps = dispatch => ({
 const mapStateToProps = state => ({
 	data: state.data, 
 	loading: state.loading, 
-	error: state.error
+	error: state.error,
+	selectedPage: state.selectedPage
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Search)

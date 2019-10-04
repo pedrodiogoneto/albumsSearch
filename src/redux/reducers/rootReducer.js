@@ -15,7 +15,7 @@
 } */
 
 import {UPDATE_INPUT_VALUE, NEW_SEARCH, LOAD_ALBUNS_ERROR, LOAD_ALBUNS_LOADING, LOAD_ALBUNS_SUCCESS} from "../actions/actions";
-const initialState = {   data: [],   loading: false,   error: ''};
+const initialState = { data: [],   loading: false,   error: '', selectedPage: 1};
 
 export default function reduxSagaReducer(state = initialState, action) {   
 	switch (action.type) {
@@ -31,7 +31,8 @@ export default function reduxSagaReducer(state = initialState, action) {
 		return {
 			...state,
 			loading: true,               
-			error:''           
+			error:'',
+			selectedPage: 1           
 		};
 	}
 				
@@ -53,6 +54,14 @@ export default function reduxSagaReducer(state = initialState, action) {
 		return {
 			...state,
 			loading: false,               
+			error: action.error           
+		};       
+	}       
+	case 'NEW_SELECTED_PAGE': {
+		console.log('!!!!!!!!', action);
+		return {
+			...state,
+			selectedPage: action.payload.selectedPage,               
 			error: action.error           
 		};       
 	}       
