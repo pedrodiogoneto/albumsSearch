@@ -58,7 +58,6 @@ export default function reduxSagaReducer(state = initialState, action) {
 		};       
 	}       
 	case 'NEW_SELECTED_PAGE': {
-		console.log('!!!!!!!!', action);
 		return {
 			...state,
 			selectedPage: action.payload.selectedPage,               
