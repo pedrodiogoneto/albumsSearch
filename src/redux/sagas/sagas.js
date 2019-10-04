@@ -22,7 +22,7 @@ function* fetchAlbuns() {
 		console.log(albuns);
 		yield put({type: 'LOAD_ALBUNS_SUCCESS', data: albuns});
 	} catch (e) {
-		yield put({type: LOAD_ALBUNS_ERROR, error: e.message});
+		yield put({type: 'LOAD_ALBUNS_ERROR', error: e.message});
 	}
 }
 
