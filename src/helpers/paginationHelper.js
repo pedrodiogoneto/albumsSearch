@@ -21,7 +21,6 @@ const paginationHelper = (data) => {
 		if(i < 200 ) return addAlbum(10, album)
 	})
 
-	console.log(paginatedData);
 	return paginatedData
 }
 
