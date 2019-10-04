@@ -11,8 +11,8 @@ import { NEW_SEARCH } from '../redux/actions/actions'
 const Search = (props) => {
 	const [areResultsShowing, setAreResultsShowing] = useState(false)
 	const [isGridPattern, setIsGridPattern] = useState(true)
-
 	const data = useSelector(state => state.data.results)
+
 
 	const handleOnSearchClick = () => {
 		setAreResultsShowing(true)
@@ -20,7 +20,8 @@ const Search = (props) => {
 	}
 
 	const PositionedSearchWrapper = areResultsShowing ? TopSearchWrapper : CenteredSearchWrapper
-
+	const { loading } = props
+	
 	return (
 		<React.Fragment>
 			<PositionedSearchWrapper>
@@ -32,14 +33,16 @@ const Search = (props) => {
 				{data && <button onClick={() => setIsGridPattern(!isGridPattern)}>Change Dir</button>}
 			</PositionedSearchWrapper>
 			
-			{props.loading &&
+			{loading &&
 				<SpinnerWrapper>
 					<Spinner animation="border" role="status">
 						<span className="sr-only">Loading...</span>
 					</Spinner>
 				</SpinnerWrapper>}
 			
-			{!props.loading && data && <AlbunsGrid data={data} isGridPattern={isGridPattern}/>}
+			{!loading && data && <AlbunsGrid data={data} isGridPattern={isGridPattern}/>}
+
+			{!loading && data === null && <p>I'm Sorry, we couldn't find what you're looking for</p>}
 		</React.Fragment>
 	);
 }
@@ -70,7 +73,7 @@ const TopSearchWrapper = styled.div`
 
 const SearchButton = styled.button`
     text-align: center;
-    border: 1px solid white;
+    border: 2px solid white;
 `
 
 const Title = styled.p`

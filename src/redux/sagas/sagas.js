@@ -4,8 +4,7 @@ import api from '../api'
 
 async function fetchAsync(func, data) {
 	const response = await func(data);
-	if (response.ok) return await response.json();   
-	
+	if (response.ok) return await response.json();
 	throw new Error("Unexpected error!!!");
 }
 
@@ -13,7 +12,8 @@ function* fetchAlbuns() {
 	try {
 		yield put({type: 'LOAD_ALBUNS_LOADING' });   
 		const data = yield select(state => state.searchInput)
-		const albuns = yield fetchAsync(api.searchAlbuns, data);
+		let albuns = yield fetchAsync(api.searchAlbuns, data);
+		if (albuns.resultCount === 0) albuns.results = null
 		yield put({type: 'LOAD_ALBUNS_SUCCESS', data: albuns});   
 	} catch (e) {       
 		yield put({type: LOAD_ALBUNS_ERROR, error: e.message});   
