@@ -4,7 +4,6 @@ import styled from 'styled-components'
 
 import { NEW_SELECTED_PAGE } from '../redux/actions/actions'
 
-
 const Pagination = (props) => {
 	if(!props.data) return
     
@@ -13,13 +12,13 @@ const Pagination = (props) => {
 	return (
 		<PaginationWrapper>
 			{props.selectedPage !== 1 && 
-                <PageNumber onClick={()=> props.NEW_SELECTED_PAGE(props.selectedPage - 1)}>{'<'}</PageNumber>
+                <PageNumber onClick={()=> props.NEW_SELECTED_PAGE(Number(props.selectedPage) - 1)}>{'<'}</PageNumber>
 			}
 
 			{renderPaginataion()}
 			
 			{Number(props.selectedPage) !== Math.max(...Object.keys(props.data)) && 
-                <PageNumber onClick={()=> props.NEW_SELECTED_PAGE(props.selectedPage + 1)}>{'>'}</PageNumber>
+                <PageNumber onClick={()=> props.NEW_SELECTED_PAGE(Number(props.selectedPage) + 1)}>{'>'}</PageNumber>
 			}
 		</PaginationWrapper>
 	);
