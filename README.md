@@ -29,4 +29,4 @@ In the project directory, you can run:
 
 ## Instruction to run the application:
 
-### `npm run`
+### `npm start`
