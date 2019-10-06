@@ -81,6 +81,7 @@ const TopSearchWrapper = styled.div`
 const SearchButton = styled.button`
     text-align: center;
     border: 2px solid white;
+	border-bottom: 1px solid white;
 `
 
 const Title = styled.p`
