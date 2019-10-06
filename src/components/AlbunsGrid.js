@@ -4,7 +4,6 @@ import styled from 'styled-components'
 const Album = React.lazy(() => import('./Album'))
 
 const AlbunsGrid = ({data, isGridPattern}) => {
-    console.log(data, isGridPattern);
 	if(!data) return
 
 	const renderAlbuns = () => data.map((album, i) => <Album album={album} key={i} isGridPattern={isGridPattern}/>)

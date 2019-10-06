@@ -1,20 +1,5 @@
-/* export default (state = {}, action) => {
-	console.log(state, action);
-	switch (action.type) {
-	case 'SIMPLE_ACTION':
-		return {
-			result: action.payload
-		}
-	case 'newSearch': 
-		return {
-			result: 'newSearch'
-		}
-	default:
-		return state
-	}
-} */
-
 import {UPDATE_INPUT_VALUE, NEW_SEARCH, LOAD_ALBUNS_ERROR, LOAD_ALBUNS_LOADING, LOAD_ALBUNS_SUCCESS} from "../actions/actions";
+
 const initialState = { data: [],   loading: false,   error: '', selectedPage: 1};
 
 export default function reduxSagaReducer(state = initialState, action) {   

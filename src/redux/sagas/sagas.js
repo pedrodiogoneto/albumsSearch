@@ -19,7 +19,6 @@ function* fetchAlbuns() {
 		} else {
 			albuns.results = paginationHelper(albuns.results)
 		}
-		console.log(albuns);
 		yield put({type: 'LOAD_ALBUNS_SUCCESS', data: albuns});
 	} catch (e) {
 		yield put({type: 'LOAD_ALBUNS_ERROR', error: e.message});
