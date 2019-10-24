@@ -1,7 +1,13 @@
 import React from 'react';
+import { useHistory } from "react-router-dom";
 import styled from 'styled-components'
 
 const Album = ({ album, isGridPattern }) => {
+
+	let history = useHistory();
+
+	console.log(album);
+
 	return (
 		<Wrapper isGridPattern={isGridPattern}>
 			<InnerWrapper>
@@ -13,13 +19,14 @@ const Album = ({ album, isGridPattern }) => {
 					</TextWrapper>
 				</Front>
 				<Back>
-					<InfoButton>+ Info</InfoButton>
+					<InfoButton onClick={() => history.push({ pathname: `/${album.collectionId}`, state: album})}>
+                        + Info
+					</InfoButton>
 				</Back>
 			</InnerWrapper>
 		</Wrapper>
 	);
 }
-
 export default Album;
 
 
