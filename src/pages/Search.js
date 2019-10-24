@@ -34,7 +34,7 @@ const Search = (props) => {
 					<SearchComponent areResultsShowing={areResultsShowing} />
 					<SearchButton onClick={() => handleOnSearchClick()}>Search</SearchButton>
 				</div>
-				{data && <button onClick={() => setIsGridPattern(!isGridPattern)}><ImageSwitch src={switchIcon} alt={'switch'}/></button>}
+				{data && <SwitchButton onClick={() => setIsGridPattern(!isGridPattern)}><ImageSwitch src={switchIcon} alt={'switch'}/></SwitchButton>}
 			</PositionedSearchWrapper>
 			
 			{loading &&
@@ -98,4 +98,13 @@ const SpinnerWrapper = styled.div`
 const ImageSwitch = styled.img`
 	width: 25%;
     margin-top: -5%;
+`
+
+const SwitchButton = styled.button`
+	border: 0px;
+	background-color: transparent;
+
+	&:focus {
+		outline: none;
+	}
 `
