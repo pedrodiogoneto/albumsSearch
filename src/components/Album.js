@@ -5,12 +5,10 @@ import styled from 'styled-components'
 const Album = ({ album, isGridPattern }) => {
 
 	let history = useHistory();
-
-	console.log(album);
-
+    
 	return (
 		<Wrapper isGridPattern={isGridPattern}>
-			<InnerWrapper>
+			<InnerWrapper isGridPattern={isGridPattern}>
 				<Front>
 					<AlbumImage src={album.artworkUrl100} isGridPattern={isGridPattern}/>
 					<TextWrapper>
@@ -31,8 +29,11 @@ export default Album;
 
 
 const InnerWrapper = styled.div`
-    transition: transform 0.5s;
+    transition: transform 0.8s;
     transform-style: preserve-3d;
+    border-radius: ${props => props.isGridPattern ? '5%' : '1%'};
+    display: ${props => props.isGridPattern ? '' : 'flex'};
+    min-width: ${props => props.isGridPattern ? '125px' : '300px'};
 `
 
 const Front = styled.div`
