@@ -1,40 +1,57 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import styled from 'styled-components'
-import { Spinner } from 'react-bootstrap'
 
 import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
-    useParams,
-    useHistory,
-    useLocation
-  } from "react-router-dom";
-
-import { connect } from 'react-redux';
+	BrowserRouter as Router,
+	Switch,
+	Route,
+	useParams,
+	useHistory,
+	useLocation
+} from "react-router-dom";
 
 const AlbumDetails = (props) => {
 	let history = useHistory();
+	const { id } = useParams()
+	const { state } = useLocation()
 
-    const { id } = useParams()
-    const { state } = useLocation()
-
-    console.log('açsjhdflkajshdfkljh', state)
 	return (
 		<React.Fragment>
-            <button onClick={() => history.push('/')}>Back!!!!</button>
-            <h1>{`este é o caralho do id: ${id}`}</h1>
+			<Button onClick={() => history.push('/')}>{'<'}</Button>
+			<Wrapper>
+				<img src={state.artworkUrl100} />
+				<h1><a href={state.collectionViewUrl}>{state.collectionName}</a></h1>
+				<h5><a href={state.artistViewUrl}>{state.artistName}</a></h5>
+				<h6>{`Price: ${state.collectionPrice} ${state.currency}`}</h6>
+				<h6>{`Style: ${state.primaryGenreName}`}</h6>
+				<h6>{`Tracks: ${state.trackCount}`}</h6>
+			</Wrapper>
 		</React.Fragment>
 	);
 }
 
-const mapDispatchToProps = dispatch => ({
 
-})
+export default AlbumDetails
 
-const mapStateToProps = state => ({
+const Wrapper = styled.div`
+    border: 1px solid black;
+    padding: 10%;
 
+    & a {
+        color: black;
+        text-decoration: none;
     
-});
+    }
+    & a:hover {
+        color: black;
+        text-decoration: none;
+    
+    }
+`
 
-export default connect(mapStateToProps, mapDispatchToProps)(AlbumDetails)
+const Button = styled.button`
+    border: 0px;
+    background-color: transparent;
+    margin-bottom: 20px;
+    font-size: 25pt
+`
