@@ -18,16 +18,10 @@ import {
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-
-const sagaMiddleware = createSagaMiddleware();
-
-
-const store = createStore(rootReducer, applyMiddleware(sagaMiddleware));
-sagaMiddleware.run(albunsSaga);
-
+import configureStore from './redux/store'
 
 const App = () => (
-	<Provider store={store}>
+	<Provider store={configureStore()}>
 		<Router>
 			<Wrapper>
 				<Switch>
