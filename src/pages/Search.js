@@ -19,6 +19,8 @@ const Search = (props) => {
 
 	useEffect(() => setPage(props.selectedPage), [props.selectedPage]);
 
+	useEffect(()=> { if(data) setAreResultsShowing(true) }, [])
+
 	const handleOnSearchClick = () => {
 		setAreResultsShowing(true)
 		return props.NEW_SEARCH()
@@ -34,7 +36,7 @@ const Search = (props) => {
 					<SearchComponent areResultsShowing={areResultsShowing} />
 					<SearchButton onClick={() => handleOnSearchClick()}>Search</SearchButton>
 				</div>
-				{data && <SwitchButton onClick={() => setIsGridPattern(!isGridPattern)}><ImageSwitch src={switchIcon} alt={'switch'}/></SwitchButton>}
+				{/* data && <SwitchButton onClick={() => setIsGridPattern(!isGridPattern)}><ImageSwitch src={switchIcon} alt={'switch'}/></SwitchButton> */}
 			</PositionedSearchWrapper>
 			
 			{loading &&
